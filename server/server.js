@@ -24,7 +24,7 @@ await connectCloudinary();
 
 
 //Allow multiple origins
-const allowedOrigins = ['http://localhost:5173','https://nature-cart.vercel.app']
+const allowedOrigins = ['http://localhost:5173','https://nature-cart-front.vercel.app']
 
 app.post('/stripe', express.raw({type: 'application/json'}), stripeWebHooks)
 
