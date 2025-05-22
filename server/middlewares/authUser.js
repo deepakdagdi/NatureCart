@@ -6,7 +6,7 @@
     const {token} =req.cookies;
 
     if(!token){
-        return res.json({success:false,message:'Not cfvdgfd Authrozed'});
+        return res.status(401).json({success:false,message:'Not cfvdgfd Authrozed'});
 
     }
     try{
