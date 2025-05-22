@@ -7,7 +7,7 @@ import User from "../models/User.js";
 //place Order COD : /api/order/cod
 export const placeOrderCOD = async (req, res) => {
   try {
-    const userId=req.user;
+    const {userId}=req;
     
     const { items, address } = req.body;
     if (!address || items.length === 0) {
@@ -40,7 +40,7 @@ export const placeOrderCOD = async (req, res) => {
 // Place Order Stripe : /api/order/stripe
 export const placeOrderStripe = async (req, res) => {
   try {
-    const userId =req.user;
+    const {userId} =req;
     const { items, address } = req.body;
     const {origin}= req.headers;
 
@@ -176,7 +176,7 @@ export const stripeWebHooks =async (request , response) => {
 //Get Orders by User ID : /api/order/user
 export const getUserOrders = async (req, res) => {
   try {
-    const userId= req.user;
+    const {userId}= req;
 
     
     const orders = await Order.find({

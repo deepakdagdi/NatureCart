@@ -14,6 +14,7 @@ const Orders = () => {
     try {
       const {data} = await axios.get('/api/order/seller')
       if(data.success){
+      
         console.log(setOrders(data.orders))
       }else{
         toast.error(data.message)

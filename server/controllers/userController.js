@@ -140,24 +140,24 @@ export const login =async (req,res)=>{
 
 
 
-export const isAuth= async (req, res) => {
-    const token = req.cookies.token;
-    if (!token) return res.status(401).json({ error: 'Not authenticated' });
+// export const isAuth= async (req, res) => {
+//     const token = req.cookies.token;
+//     if (!token) return res.status(401).json({ error: 'Not authenticated' });
   
-    try {
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+//     try {
+//       const decoded = jwt.verify(token, process.env.JWT_SECRET);
     
-      const user = await User.findById(decoded.id).select('-password');
-      if (!user)
-        { return res.status(404).json({ error: 'User not found' });
-       }else{
-        return res.json({success : true , user})// Includes user._id
-      }
+//       const user = await User.findById(decoded.id).select('-password');
+//       if (!user)
+//         { return res.status(404).json({ error: 'User not found' });
+//        }else{
+//         return res.json({success : true , user})// Includes user._id
+//       }
        
-    } catch (err) {
-      res.status(401).json({ error: 'Invalid token' });
-    }
-}
+//     } catch (err) {
+//       res.status(401).json({ error: 'Invalid token' });
+//     }
+// }
 
 // export const isAuth= async (req, res) => {
 //     const user = req.user;
@@ -179,6 +179,22 @@ export const isAuth= async (req, res) => {
 
 //     }
 // }
+
+
+
+
+//check auth :/api/user/is-auth
+export const isAuth = async(req,res)=>{
+    try {
+        const {userId} = req;
+        const user=await User.findById(userId).select("-password")
+        return res.json({success:true,user})
+    } catch (error) {
+        console.log(error.message);
+        res.json({success: false , message: error.message});
+        
+    }
+}
 
 //Logout user : /api/user/logout
 export const  logout =  async (req,res)=>{

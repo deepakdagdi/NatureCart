@@ -8,7 +8,7 @@ export const updateCart = async (req , res ) => {
         //here any probleam is genreated with the userid so you can use the logic of userAuth and think about logic
 
          //const {userId,cartItems}= req.user;
-         const userId= req.user;
+         const {userId}= req;
          const {cartItems} =req.body;
         //  console.log("userID=" +req.user);
         // console.log("cartItems="+cartItems)
