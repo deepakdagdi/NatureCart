@@ -2,7 +2,7 @@
 const authUser= async(req,res,next)=>{
     const {token} =req.cookies;
     if(!token){
-        return res.json({success:false,message:'Not Authrozed'});
+        return res.json({success:false,message:'Not cfvdgfd Authrozed'});
 
     }
     try{
@@ -10,7 +10,7 @@ const authUser= async(req,res,next)=>{
         if(tokenDecode.id){
                req.userId = tokenDecode.id
         }else{
-            return res.json({success:false,message:'Not Authrozed'});
+            return res.json({success:false,message:'Not deepak Authrozed'});
         }
         next();
     }catch(error){

@@ -1,66 +1,6 @@
-// // const User = require("../models/User");
-// // const jwt = require("jsonwebtoken");
-
-// import jwt from "jsonwebtoken";
-// import User from "../models/User.js";
-// // Generate JWT
-// const generateToken = (id) => {
-//   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "7d" });
-// };
-
-// exports.registerUser = async (req, res) => {
-//   const { name, email, password } = req.body;
-//   try {
-//     const userExists = await User.findOne({ email });
-//     if (userExists) return res.status(400).json({ message: "User already exists" });
-
-//     const user = await User.create({ name, email, password });
-//     res.status(201).json({
-//       _id: user._id,
-//       name: user.name,
-//       email: user.email,
-//       token: generateToken(user._id),
-//     });
-//   } catch (err) {
-//     res.status(500).json({ message: err.message });
-//   }
-// };
-
-// exports.loginUser = async (req, res) => {
-//   const { email, password } = req.body;
-//   try {
-//     const user = await User.findOne({ email });
-//     if (!user || !(await user.matchPassword(password))) {
-//       return res.status(401).json({ message: "Invalid credentials" });
-//     }
-
-//     res.json({
-//       _id: user._id,
-//       name: user.name,
-//       email: user.email,
-//       token: generateToken(user._id),
-//     });
-//   } catch (err) {
-//     res.status(500).json({ message: err.message });
-//   }
-// };
-
-// exports.getUserProfile = async (req, res) => {
-//   const user = req.user;
-//   res.json(user);
-// };
-
-
-
-
-
-
-
 import User from "../models/User.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-
-
 
 
 //Register user  : /api/user/register
@@ -136,52 +76,6 @@ export const login =async (req,res)=>{
         res.json({success: false , message: error.message});
     }
 }
-
-
-
-
-// export const isAuth= async (req, res) => {
-//     const token = req.cookies.token;
-//     if (!token) return res.status(401).json({ error: 'Not authenticated' });
-  
-//     try {
-//       const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    
-//       const user = await User.findById(decoded.id).select('-password');
-//       if (!user)
-//         { return res.status(404).json({ error: 'User not found' });
-//        }else{
-//         return res.json({success : true , user})// Includes user._id
-//       }
-       
-//     } catch (err) {
-//       res.status(401).json({ error: 'Invalid token' });
-//     }
-// }
-
-// export const isAuth= async (req, res) => {
-//     const user = req.user;
-//     res.json(user);
-//   };
-
-// async(req,res)=>{
-//     try{
-
-//        const userId= req.user;
-              
-              
-//         const user= await User.findById(`${userId}`).select("-password")
-//         return res.json({success : true , user})
-
-//     }catch(error){
-//         console.log(error.message);
-//         res.json({success: false , message: error.message});
-
-//     }
-// }
-
-
-
 
 //check auth :/api/user/is-auth
 export const isAuth = async(req,res)=>{
