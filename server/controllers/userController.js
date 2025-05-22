@@ -24,13 +24,12 @@ export const register = async (req,res)=>{
 
         const token=jwt.sign({id: user._id},process.env.JWT_SECRET,{expiresIn:'7d'});
 
-        res.cookie('token', token, {
-            httpOnly: true, 
-            secure: process.env.NODE_ENV === 'production', 
-            sameSite:'None' ,
-
-            maxAge: 7 * 24 * 60 * 60 * 1000, 
-        })
+       res.cookie('token', token, {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === 'production', // 🔥 Use HTTPS in production
+  sameSite: 'None', // 🔥 Needed for cross-site cookies
+  maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+});
         return res.json({success: true ,user: {email: user.email, name: user.name}})
     }catch(error){
         console.log(error.message);
@@ -61,13 +60,11 @@ export const login =async (req,res)=>{
         const token=jwt.sign({id: user._id}, process.env.JWT_SECRET,{expiresIn:'7d'});
 
             res.cookie('token', token, {
-            httpOnly: true, 
-            secure: process.env.NODE_ENV === 'production', 
-
-            sameSite:'None',
-
-            maxAge: 7 * 24 * 60 * 60 * 1000, 
-        })
+  httpOnly: true,
+  secure: process.env.NODE_ENV === 'production', // 🔥 Use HTTPS in production
+  sameSite: 'None', // 🔥 Needed for cross-site cookies
+  maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+});
          
         return res.json({success: true ,user: {email: user.email, name: user.name}})
 
