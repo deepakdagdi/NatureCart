@@ -116,7 +116,7 @@ export const AppContextProvider= ({children})=>{
     useEffect(()=>{
         const updateCart =async ()=>{
         try {
-            const {data} = await axios.post('/api/cart/update',{cartItems},{withCredentials: true})
+            const {data} = await axios.post('/api/cart/update',{cartItems})
             if(!data.success){
                 toast.error(data.message)
             }

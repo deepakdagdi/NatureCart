@@ -8,7 +8,7 @@ const ProductList = () => {
   const {products,currency,axios, fetchProducts} =  useAppContext();
   const toggleStock =async(id,inStock)=>{
     try {
-        const {data} = await axios.post('/api/product/stock',{id,inStock},{withCredentials: true})
+        const {data} = await axios.post('/api/product/stock',{id,inStock})
         if(data.success){
             fetchProducts();
             toast.success(data.message)

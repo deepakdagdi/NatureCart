@@ -12,7 +12,7 @@ const Orders = () => {
   const fetchOrders = async () =>{
 
     try {
-      const {data} = await axios.get('/api/order/seller',{withCredentials: true})
+      const {data} = await axios.get('/api/order/seller')
       if(data.success){
       
         console.log(setOrders(data.orders))

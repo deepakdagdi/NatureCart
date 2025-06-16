@@ -55,7 +55,7 @@ const Cart = () => {
                     userId: user._id,
                     items : cartArray.map(item =>({product: item._id, quantity: item.quantity})),
                     address: selectAddresses._id
-                },{withCredentials: true})
+                })
                 if(data.success){
                    window.location.replace(data.url)
                 }
@@ -79,7 +79,7 @@ const Cart = () => {
     //Get User Address
     const getUserAddress = async()=>{
         try {
-            const {data}= await axios.get('/api/address/get',{withCredentials: true})
+            const {data}= await axios.get('/api/address/get')
             if(data.success){
               console.log(data.addresses);
             
